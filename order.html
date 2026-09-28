@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Menu & Pesan Mandiri - Ayam Goreng Kampung BUMI ABDI</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              primary: '#2C4E1A',
+              primaryDark: '#1E3711',
+              gold: '#C5882B',
+              goldLight: '#E5A33D',
+              cream: '#FCF9F2',
+              dark: '#1E293B',
+              grayBg: '#F8F9FA'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- PWA Manifest & Mobile Meta -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2C4E1A">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="apple-touch-icon" href="assets/logo.png">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').catch(() => {});
+      });
+    }
+  </script>
+</head>
+<body class="bg-gray-100 text-gray-800 min-h-screen pb-28">
+
+  <!-- TOP HEADER -->
+  <header class="bg-white sticky top-0 z-30 shadow-sm border-b border-gray-200/80">
+    <div class="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <img src="assets/logo.png" alt="Bumi Abdi Logo" class="w-11 h-11 rounded-full border border-gray-200 shadow-sm">
+        <div>
+          <h1 class="font-extrabold text-sm text-brand-primary tracking-tight leading-none">BUMI ABDI</h1>
+          <p class="text-[10px] font-bold text-amber-700 mt-0.5">Ayam Goreng Kampung</p>
+          <p class="text-[9px] text-gray-400 italic">Asli. Gurih. Berkah.</p>
+        </div>
+      </div>
+
+      <!-- TABLE BADGE & CALL WAITER -->
+      <div class="flex items-center gap-2">
+        <div class="bg-emerald-900 text-amber-300 font-extrabold text-xs px-3 py-1.5 rounded-xl shadow flex items-center gap-1.5">
+          <i class="fa-solid fa-chair text-[10px]"></i>
+          <span id="customer-table-badge">Meja 01</span>
+        </div>
+        <button onclick="custApp.callWaiter()" title="Panggil Pelayan" class="w-9 h-9 bg-amber-500 hover:bg-amber-600 text-white rounded-xl flex items-center justify-center text-xs shadow active:scale-95 transition-all">
+          <i class="fa-solid fa-bell"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- SEARCH & GREETING -->
+    <div class="max-w-md mx-auto px-4 pb-3">
+      <div class="relative mt-1">
+        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+        <input type="text" id="customer-search-input" placeholder="Cari menu ayam, bebek, sambal, minuman..." 
+          class="w-full pl-9 pr-4 py-2 bg-gray-100 border border-gray-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-primary transition-all">
+      </div>
+    </div>
+
+    <!-- CATEGORY HORIZONTAL SCROLL -->
+    <div class="max-w-md mx-auto px-4 pb-2.5 overflow-x-auto no-scrollbar flex gap-2" id="customer-categories">
+      <!-- Injected by customer.js -->
+    </div>
+  </header>
+
+  <!-- BANNER PROMO / INFO -->
+  <div class="max-w-md mx-auto px-4 pt-3">
+    <div class="bg-gradient-to-r from-emerald-900 via-emerald-800 to-green-900 rounded-2xl p-3.5 text-white shadow-md relative overflow-hidden flex items-center justify-between">
+      <div class="relative z-10">
+        <span class="bg-amber-400 text-emerald-950 font-extrabold text-[9px] uppercase px-2 py-0.5 rounded-full">Menu Spesial</span>
+        <h3 class="font-extrabold text-sm mt-1">Ayam Goreng Kampung Asli</h3>
+        <p class="text-[11px] text-emerald-100 mt-0.5">Gurih meresap sampai ke tulang & sambal dadak segar!</p>
+      </div>
+      <img src="assets/logo.png" alt="Icon" class="w-14 h-14 rounded-full border-2 border-amber-400/80 opacity-90">
+    </div>
+  </div>
+
+  <!-- MENU LIST CONTAINER -->
+  <main class="max-w-md mx-auto px-4 pt-4 space-y-3" id="customer-menu-grid">
+    <!-- Injected by customer.js -->
+  </main>
+
+  <!-- FLOATING CART BAR (BOTTOM) -->
+  <div id="floating-cart-bar" class="fixed bottom-4 left-4 right-4 max-w-md mx-auto z-40 transition-transform duration-300 translate-y-32">
+    <div class="bg-emerald-900 text-white rounded-2xl p-3 shadow-2xl border border-amber-500/50 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-amber-500 text-emerald-950 flex items-center justify-center font-extrabold text-sm shadow">
+          <i class="fa-solid fa-bag-shopping"></i>
+        </div>
+        <div>
+          <span id="floating-cart-count" class="text-xs text-amber-300 font-bold block">0 Menu</span>
+          <span id="floating-cart-total" class="font-extrabold text-base">Rp 0</span>
+        </div>
+      </div>
+
+      <button onclick="custApp.openCartDrawer()" class="px-5 py-2.5 bg-amber-500 hover:bg-amber-400 text-emerald-950 font-extrabold text-xs rounded-xl shadow active:scale-95 transition-all flex items-center gap-1.5">
+        Lihat Pesanan <i class="fa-solid fa-arrow-right text-[10px]"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- MODAL DETAIL & VARIAN ITEM -->
+  <div id="cust-item-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl w-full max-w-sm overflow-hidden shadow-2xl animate-toast flex flex-col max-h-[90vh]">
+      <div class="relative h-44 w-full bg-gray-100">
+        <img id="cust-modal-img" src="assets/logo.png" alt="" class="w-full h-full object-cover">
+        <button onclick="custApp.closeItemModal()" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/50 text-white flex items-center justify-center text-xs backdrop-blur-sm hover:bg-black/70">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="p-4 overflow-y-auto space-y-3 flex-1">
+        <div>
+          <h3 id="cust-modal-title" class="font-bold text-gray-900 text-base">Menu</h3>
+          <p id="cust-modal-price" class="font-extrabold text-emerald-800 text-lg mt-0.5">Rp 0</p>
+          <p id="cust-modal-desc" class="text-xs text-gray-500 mt-1"></p>
+        </div>
+
+        <!-- Variants -->
+        <div>
+          <label class="block text-xs font-bold text-gray-700 mb-1.5">Pilihan Varian / Potongan:</label>
+          <div id="cust-modal-variants" class="space-y-1.5"></div>
+        </div>
+
+        <!-- Notes -->
+        <div>
+          <label class="block text-xs font-bold text-gray-700 mb-1">Catatan Khusus (Opsional):</label>
+          <input type="text" id="cust-modal-notes" placeholder="Contoh: Sambal dipisah, ayam garing, dll." 
+            class="w-full px-3 py-2 text-xs border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-gray-50">
+        </div>
+      </div>
+
+      <div class="p-4 bg-gray-50 border-t border-gray-100 flex items-center justify-between gap-3">
+        <!-- QTY -->
+        <div class="flex items-center gap-2 bg-white border border-gray-200 rounded-xl p-1">
+          <button onclick="custApp.adjustModalQty(-1)" class="w-7 h-7 rounded-lg bg-gray-100 text-gray-700 font-bold text-sm flex items-center justify-center active:scale-90">-</button>
+          <span id="cust-modal-qty" class="w-6 text-center font-extrabold text-sm text-gray-900">1</span>
+          <button onclick="custApp.adjustModalQty(1)" class="w-7 h-7 rounded-lg bg-emerald-800 text-white font-bold text-sm flex items-center justify-center active:scale-90">+</button>
+        </div>
+
+        <!-- ADD BUTTON -->
+        <button onclick="custApp.confirmAddToCart()" class="flex-1 py-3 bg-emerald-800 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-md active:scale-95 transition-all">
+          Tambah ke Keranjang
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CART DRAWER / CHECKOUT MODAL -->
+  <div id="cust-cart-drawer" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="bg-white rounded-t-3xl sm:rounded-3xl w-full max-w-md overflow-hidden shadow-2xl flex flex-col max-h-[85vh]">
+      <!-- Header -->
+      <div class="px-4 py-3 bg-emerald-900 text-white flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-basket-shopping text-amber-400"></i>
+          <h3 class="font-extrabold text-sm">Keranjang Pesanan Anda</h3>
+        </div>
+        <button onclick="custApp.closeCartDrawer()" class="text-gray-300 hover:text-white p-1 text-sm">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Items List -->
+      <div class="p-4 overflow-y-auto space-y-2 flex-1 max-h-64" id="cust-drawer-items">
+        <!-- Injected -->
+      </div>
+
+      <!-- Customer Info -->
+      <div class="px-4 py-3 bg-gray-50 border-t border-gray-100 space-y-2">
+        <div>
+          <label class="block text-[11px] font-bold text-gray-600 mb-1">Nama Pemesan (Untuk panggilan):</label>
+          <input type="text" id="cust-name-input" placeholder="Masukkan nama Anda (misal: Ibu Sarah)" 
+            class="w-full px-3 py-2 text-xs border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-white">
+        </div>
+
+        <div class="flex justify-between items-center pt-2">
+          <span class="font-bold text-gray-700 text-xs">Total Pembayaran:</span>
+          <span id="cust-drawer-total" class="font-extrabold text-emerald-900 text-base">Rp 0</span>
+        </div>
+      </div>
+
+      <!-- Submit Action -->
+      <div class="p-4 bg-white border-t border-gray-100 flex gap-2">
+        <button onclick="custApp.submitOrder()" 
+          class="w-full py-3.5 bg-emerald-800 hover:bg-emerald-700 text-white font-extrabold text-sm rounded-xl shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2">
+          <i class="fa-solid fa-paper-plane text-amber-400"></i> Kirim Pesanan ke Dapur & Kasir
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIVE ORDER TRACKING MODAL -->
+  <div id="cust-tracking-screen" class="fixed inset-0 bg-white z-50 hidden flex-col max-w-md mx-auto">
+    <div class="p-4 bg-emerald-900 text-white flex items-center justify-between shadow-md">
+      <div class="flex items-center gap-3">
+        <img src="assets/logo.png" alt="Logo" class="w-10 h-10 rounded-full border border-white">
+        <div>
+          <h3 class="font-extrabold text-sm">Status Pesanan Anda</h3>
+          <p class="text-[10px] text-amber-300">BUMI ABDI RESTO</p>
+        </div>
+      </div>
+      <button onclick="custApp.closeTrackingScreen()" class="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg">
+        Tutup
+      </button>
+    </div>
+
+    <div class="p-4 overflow-y-auto flex-1 space-y-4">
+      <!-- Order Info Card -->
+      <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 text-center">
+        <span class="text-xs text-emerald-800 font-bold uppercase tracking-wider block">Nomor Pesanan</span>
+        <h2 id="track-order-id" class="font-extrabold text-lg font-mono text-emerald-950 mt-0.5">BA-XXXX</h2>
+        <p class="text-xs text-gray-600 mt-1">Meja: <strong id="track-order-table">Meja 01</strong></p>
+      </div>
+
+      <!-- Timeline Tracking -->
+      <div class="bg-white border border-gray-200 rounded-2xl p-4 shadow-sm space-y-4">
+        <h4 class="font-extrabold text-xs text-gray-800 uppercase tracking-wide">Proses Pesanan</h4>
+        
+        <div class="space-y-3">
+          <div class="flex items-center gap-3">
+            <div id="step-received" class="w-8 h-8 rounded-full bg-emerald-800 text-white flex items-center justify-center font-bold text-xs flex-shrink-0">
+              <i class="fa-solid fa-check"></i>
+            </div>
+            <div>
+              <p class="font-bold text-xs text-gray-800">Pesanan Diterima</p>
+              <p class="text-[10px] text-gray-500">Tercatat di sistem kasir resto</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <div id="step-cooking" class="w-8 h-8 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center font-bold text-xs flex-shrink-0">
+              <i class="fa-solid fa-fire"></i>
+            </div>
+            <div>
+              <p class="font-bold text-xs text-gray-800">Sedang Dimasak di Dapur</p>
+              <p class="text-[10px] text-gray-500">Koki sedang menyiapkan hidangan hangat Anda</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <div id="step-ready" class="w-8 h-8 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center font-bold text-xs flex-shrink-0">
+              <i class="fa-solid fa-bell-concierge"></i>
+            </div>
+            <div>
+              <p class="font-bold text-xs text-gray-800">Siap Disajikan ke Meja</p>
+              <p class="text-[10px] text-gray-500">Pramusaji segera mengantar pesanan Anda</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Items Details -->
+      <div class="bg-white border border-gray-200 rounded-2xl p-4 shadow-sm">
+        <div class="flex justify-between items-center mb-2 pb-2 border-b border-gray-100">
+          <span class="font-bold text-xs text-gray-800">Rincian Menu</span>
+          <span id="track-order-pay-status"></span>
+        </div>
+        <ul id="track-order-items" class="space-y-1"></ul>
+        <div class="pt-2 border-t border-gray-100 flex justify-between font-extrabold text-sm text-emerald-950 mt-2">
+          <span>Total:</span>
+          <span id="track-order-total">Rp 0</span>
+        </div>
+      </div>
+
+      <!-- Call Waiter / Minta Bill -->
+      <button onclick="custApp.callWaiter()" class="w-full py-3 bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs rounded-xl shadow flex items-center justify-center gap-2">
+        <i class="fa-solid fa-bell"></i> Panggil Waiter / Minta Nota Pembayaran
+      </button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="data/menu-data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/customer.js"></script>
+</body>
+</html>

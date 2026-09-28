@@ -1,0 +1,373 @@
+// Data Master Menu & Kategori Default Rumah Makan Ayam Goreng Kampung BUMI ABDI
+// Tagline: Asli. Gurih. Berkah.
+
+const DEFAULT_CATEGORIES = [
+  { id: 'all', name: 'Semua Menu', icon: 'fa-utensils' },
+  { id: 'ayam', name: 'Ayam Goreng Kampung', icon: 'fa-drumstick-bite' },
+  { id: 'paket', name: 'Paket Komplit', icon: 'fa-box-open' },
+  { id: 'bebek_ikan', name: 'Bebek & Ikan', icon: 'fa-fish' },
+  { id: 'sayur_sup', name: 'Sayur & Sup', icon: 'fa-bowl-rice' },
+  { id: 'sambal', name: 'Aneka Sambal Khas', icon: 'fa-pepper-hot' },
+  { id: 'pelengkap', name: 'Nasi & Pelengkap', icon: 'fa-cheese' },
+  { id: 'minuman', name: 'Minuman Segar', icon: 'fa-glass-water' }
+];
+
+const DEFAULT_MENU = [
+  // --- AYAM GORENG KAMPUNG ---
+  {
+    id: 'm1',
+    code: 'AGK-01',
+    name: 'Ayam Goreng Kampung (Paha/Dada)',
+    category: 'ayam',
+    price: 28000,
+    cost: 18000,
+    description: 'Ayam kampung asli diungkep rempah bumbu kuning rahasia BUMI ABDI, digoreng garing renyah di luar juicy di dalam.',
+    image: 'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=600&q=80',
+    status: 'available',
+    isBestSeller: true,
+    variants: ['Paha Bawah + Atas', 'Dada + Sayap']
+  },
+  {
+    id: 'm2',
+    code: 'AGK-02',
+    name: 'Ayam Goreng Kremes BUMI ABDI',
+    category: 'ayam',
+    price: 30000,
+    cost: 19000,
+    description: 'Ayam kampung empuk gurih ditaburi kremesan rempah sarang burung yang super renyah dan wangi.',
+    image: 'https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?auto=format&fit=crop&w=600&q=80',
+    status: 'available',
+    isBestSeller: true,
+    variants: ['Paha', 'Dada']
+  },
+  {
+    id: 'm3',
+    code: 'AGK-03',
+    name: 'Ayam Bakar Madu Kampung',
+    category: 'ayam',
+    price: 30000,
+    cost: 19500,
+    description: 'Ayam kampung dibakar dengan olesan madu hutan dan bumbu kecap rempah gurih manis legit.',
+    image: 'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=600&q=80',
+    status: 'available',
+    isBestSeller: false,
+    variants: ['Paha', 'Dada']
+  },
+  {
+    id: 'm4',
+    code: 'AGK-04',
+    name: 'Ayam Goreng 1 Ekor Utuh Kampung',
+    category: 'ayam',
+    price: 105000,
+    cost: 72000,
+    description: '1 Ekor Utuh Ayam Kampung Goreng komplit dengan jeroan, lalapan segar & 2 pilihan sambal khas.',
+    image: 'https://images.unsplash.com/photo-1587593810167-a84920ea0781?auto=format&fit=crop&w=600&q=80',
+    status: 'available',
+    isBestSeller: true,
+    variants: ['Goreng Gurih', 'Goreng Kremes', 'Bakar Madu']
+  },
+
+  // --- PAKET KOMPLIT ---
+  {
+    id: 'm5',
+    code: 'PKT-01',
+    name: 'Paket Berkah 1 (Ayam + Nasi + Sayur Asem + Es Teh)',
+    category: 'paket',
+    price: 38000,
+    cost: 23000,
+    description: 'Ayam Kampung Goreng, Nasi Putih Pulen Wangi, Sayur Asem Segar, Lalapan, Sambal Dadak & Es Teh Manis.',
+    image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80',
+    status: 'available',
+    isBestSeller: true,
+    variants: ['Paha', 'Dada']
+  },
+  {
+    id: 'm6',
+    code: 'PKT-02',
+    name: 'Paket Komplit Gurih (Ayam Kremes + Tahu Tempe + Es Jeruk)',
+    category: 'paket',
+    price: 43000,
+    cost: 26000,
+    description: 'Ayam Goreng Kremes, Nasi Timbel, Tahu & Tempe Goreng, Sayur Asem, Sambal Bawang & Es Jeruk Peras.',
+    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80',
+    status: 'available',
+    isBestSeller: true,
+    variants: ['Paha', 'Dada']
+  },
+  {
+    id: 'm7',
+    code: 'PKT-03',
+    name: 'Paket Keluarga Berkah (4 Porsi)',
+    category: 'paket',
+    price: 155000,
+    cost: 98000,
+    description: '1 Ekor Ayam Kampung Goreng/Bakar, 4 Nasi Putih, 4 Sayur Asem, Tahu Tempe Goreng, Lalap Sambal & 1 Pitcher Es Teh.',
+    image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80',
+    status: 'available',
+    isBestSeller: true,
+    variants: ['Goreng Kremes', 'Bakar Madu', 'Campur 2 Goreng 2 Bakar']
+  },
+
+  // --- BEBEK & IKAN ---
+  {
+    id: 'm8',
+    code: 'BI-01',
+    name: 'Bebek Goreng Bumbu Hitam Madura',
+    category: 'bebek_ikan',
+    price: 36000,
+    cost: 22000,
+    description: 'Bebek empuk tidak amis dengan siraman bumbu rempah hitam pekat khas gurih pedas nikmat.',
+    image: 'https://images.unsplash.com/photo-1514944298352-870d03223004?auto=format&fit=crop&w=600&q=80',
+    status: 'available',
+    isBestSeller: false,
+    variants: ['Paha', 'Dada']
+  },
+  {
+    id: 'm9',
+    code: 'BI-02',
+    name: 'Ikan Gurame Goreng Terbang',
+    category: 'bebek_ikan',
+    price: 58000,
+    cost: 38000,
+    description: 'Gurame segar digoreng bentuk kipas garing renyah disajikan dengan sambal kecap pedas & sambal terasi.',
+    image: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80',
+    status: 'available',
+    isBestSeller: false,
+    variants: ['Goreng Kering', 'Bakar Jimbaran', 'Asam Manis']
+  },
+  {
+    id: 'm10',
+    code: 'BI-03',
+    name: 'Ikan Nila Bakar Bumbu Rujak',
+    category: 'bebek_ikan',
+    price: 32000,
+    cost: 20000,
+    description: 'Nila segar dibakar dengan olesan bumbu rujak pedas manis legit khas Sunda Jawa.',
+    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80',
+    status: 'available',
+    isBestSeller: false,
+    variants: ['Bakar Kecap', 'Bakar Bumbu Rujak', 'Goreng Kering']
+  },
+
+  // --- SAYUR & SUP ---
+  {
+    id: 'm11',
+    code: 'SYR-01',
+    name: 'Sayur Asem Khas Bumi Abdi',
+    category: 'sayur_sup',
+    price: 12000,
+    cost: 5000,
+    description: 'Kuah asam segar dengan jagung manis, labu siam, melinjo, kacang panjang dan kacang tanah.',
+    image: 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=80',
+    status: 'available',
+    isBestSeller: true,
+    variants: []
+  },
+  {
+    id: 'm12',
+    code: 'SYR-02',
+    name: 'Tumis Kangkung Terasi Balacan',
+    category: 'sayur_sup',
+    price: 15000,
+    cost: 6500,
+    description: 'Kangkung hijau segar ditumis cepat dengan api besar dan terasi udang khas aromatik.',
+    image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80',
+    status: 'available',
+    isBestSeller: false,
+    variants: ['Pedas Sedang', 'Ekstra Pedas', 'Tidak Pedas']
+  },
+  {
+    id: 'm13',
+    code: 'SYR-03',
+    name: 'Sop Iga Sapi Rempah Bening',
+    category: 'sayur_sup',
+    price: 48000,
+    cost: 32000,
+    description: 'Iga sapi empuk kuah kaldu rempah bening kaya pala, kapulaga dan taburan daun bawang bawang goreng.',
+    image: 'https://images.unsplash.com/photo-1541832676-9b763b0239ab?auto=format&fit=crop&w=600&q=80',
+    status: 'available',
+    isBestSeller: false,
+    variants: []
+  },
+
+  // --- ANEKA SAMBAL KHAS ---
+  {
+    id: 'm14',
+    code: 'SBL-01',
+    name: 'Sambal Terasi Dadak Bumi Abdi',
+    category: 'sambal',
+    price: 6000,
+    cost: 2000,
+    description: 'Sambal terasi segar diulek mendadak dengan jeruk limau wangi. Pedas segar nendang!',
+    image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&q=80',
+    status: 'available',
+    isBestSeller: true,
+    variants: ['Level 1 (Sedang)', 'Level 2 (Pedas)', 'Level 3 (Super Pedas)']
+  },
+  {
+    id: 'm15',
+    code: 'SBL-02',
+    name: 'Sambal Bawang Korek Juara',
+    category: 'sambal',
+    price: 6000,
+    cost: 2000,
+    description: 'Cabai rawit merah dan bawang putih digeprek kasar lalu disiram minyak kelapa panas gurih.',
+    image: 'https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?auto=format&fit=crop&w=600&q=80',
+    status: 'available',
+    isBestSeller: true,
+    variants: []
+  },
+  {
+    id: 'm16',
+    code: 'SBL-03',
+    name: 'Sambal Ijo Teri Padang',
+    category: 'sambal',
+    price: 7000,
+    cost: 2500,
+    description: 'Cabai hijau kukus ditumis dengan bawang merah dan taburan ikan teri medan gurih renyah.',
+    image: 'https://images.unsplash.com/photo-1600335895229-6e75511892c8?auto=format&fit=crop&w=600&q=80',
+    status: 'available',
+    isBestSeller: false,
+    variants: []
+  },
+
+  // --- NASI & PELENGKAP ---
+  {
+    id: 'm17',
+    code: 'PLK-01',
+    name: 'Nasi Putih Pulen Bakul',
+    category: 'pelengkap',
+    price: 6000,
+    cost: 2500,
+    description: 'Nasi putih beras pilihan kualitas premium, pulen, wangi dan hangat.',
+    image: 'https://images.unsplash.com/photo-1516684732162-798a0062be99?auto=format&fit=crop&w=600&q=80',
+    status: 'available',
+    isBestSeller: false,
+    variants: ['1 Porsi Piring', '1 Bakul (4 Porsi)']
+  },
+  {
+    id: 'm18',
+    code: 'PLK-02',
+    name: 'Nasi Uduk Gurih Daun Pisang',
+    category: 'pelengkap',
+    price: 8000,
+    cost: 3500,
+    description: 'Nasi uduk santan rempah dibungkus daun pisang dengan taburan bawang goreng dan serundeng.',
+    image: 'https://images.unsplash.com/photo-1596797038530-2c107229654b?auto=format&fit=crop&w=600&q=80',
+    status: 'available',
+    isBestSeller: true,
+    variants: []
+  },
+  {
+    id: 'm19',
+    code: 'PLK-03',
+    name: 'Tahu & Tempe Bacem / Goreng',
+    category: 'pelengkap',
+    price: 8000,
+    cost: 3000,
+    description: '2 potong tahu dan 2 potong tempe bumbu kuning gurih / bacem legit manis.',
+    image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80',
+    status: 'available',
+    isBestSeller: false,
+    variants: ['Goreng Gurih', 'Bacem Manis']
+  },
+  {
+    id: 'm20',
+    code: 'PLK-04',
+    name: 'Pete Goreng / Bakar (1 Papan)',
+    category: 'pelengkap',
+    price: 15000,
+    cost: 8000,
+    description: 'Pete segar pilihan digoreng garing atau dibakar wangi.',
+    image: 'https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?auto=format&fit=crop&w=600&q=80',
+    status: 'available',
+    isBestSeller: false,
+    variants: ['Goreng', 'Bakar']
+  },
+  {
+    id: 'm21',
+    code: 'PLK-05',
+    name: 'Kol Goreng Gurih Renyah',
+    category: 'pelengkap',
+    price: 8000,
+    cost: 2500,
+    description: 'Kol manis digoreng garing wangi dengan sedikit garam rempah.',
+    image: 'https://images.unsplash.com/photo-1628837741008-282ff5e3be11?auto=format&fit=crop&w=600&q=80',
+    status: 'available',
+    isBestSeller: true,
+    variants: []
+  },
+
+  // --- MINUMAN SEGAR ---
+  {
+    id: 'm22',
+    code: 'MNM-01',
+    name: 'Es Teh Manis Jumbo / Hangat',
+    category: 'minuman',
+    price: 5000,
+    cost: 1500,
+    description: 'Teh melati wangi racikan khas Jawa, disajikan dingin segar atau hangat.',
+    image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=600&q=80',
+    status: 'available',
+    isBestSeller: true,
+    variants: ['Es Teh Manis', 'Teh Hangat Manis', 'Es Teh Tawar', 'Teh Hangat Tawar']
+  },
+  {
+    id: 'm23',
+    code: 'MNM-02',
+    name: 'Es Jeruk Murni Peras Asli',
+    category: 'minuman',
+    price: 10000,
+    cost: 4000,
+    description: 'Jeruk peras asli segar kaya vitamin C dengan gula pasir murni.',
+    image: 'https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=600&q=80',
+    status: 'available',
+    isBestSeller: true,
+    variants: ['Dingin / Es', 'Hangat']
+  },
+  {
+    id: 'm24',
+    code: 'MNM-03',
+    name: 'Es Kelapa Muda Jeruk Gula Aren',
+    category: 'minuman',
+    price: 16000,
+    cost: 8000,
+    description: 'Kelapa muda serut segar dengan perasan jeruk nipis dan sirup gula aren organik.',
+    image: 'https://images.unsplash.com/photo-1589733955941-5eeaf752f6dd?auto=format&fit=crop&w=600&q=80',
+    status: 'available',
+    isBestSeller: true,
+    variants: ['Gula Aren', 'Gula Putih', 'Murni Tanpa Gula']
+  },
+  {
+    id: 'm25',
+    code: 'MNM-04',
+    name: 'Kopi Tubruk / Es Kopi Susu Gula Aren',
+    category: 'minuman',
+    price: 12000,
+    cost: 5000,
+    description: 'Kopi robusta dampit aromatik diseduh tubruk tradisional atau dibuat es kopi susu aren legit.',
+    image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80',
+    status: 'available',
+    isBestSeller: false,
+    variants: ['Kopi Tubruk Panas', 'Es Kopi Susu Aren']
+  }
+];
+
+const DEFAULT_SETTINGS = {
+  restoName: 'AYAM GORENG KAMPUNG BUMI ABDI',
+  tagline: 'Asli. Gurih. Berkah.',
+  address: 'Jl. Raya Utama No. 88, Resto Bumi Abdi',
+  phone: '0812-3456-7890 / 0821-9876-5432',
+  taxRate: 0, // PB1 / Pajak Resto opsional (misal 0% atau 10%)
+  serviceRate: 0,
+  footerReceipt: 'Terima kasih telah berkunjung ke BUMI ABDI.\nSemoga berkah & selamat menikmati hidangan!',
+  qrisMerchant: 'BUMI ABDI RESTO',
+  qrisNmid: 'ID1029384756',
+  printerWidth: '58mm', // 58mm atau 80mm
+  totalTables: 20
+};
+
+// Export to window
+window.DEFAULT_CATEGORIES = DEFAULT_CATEGORIES;
+window.DEFAULT_MENU = DEFAULT_MENU;
+window.DEFAULT_SETTINGS = DEFAULT_SETTINGS;

@@ -1,0 +1,170 @@
+/* Custom Styles for Ayam Goreng Kampung BUMI ABDI POS */
+
+:root {
+  --brand-primary: #2C4E1A;
+  --brand-primary-dark: #1E3711;
+  --brand-primary-light: #3E6B24;
+  --brand-gold: #C5882B;
+  --brand-gold-light: #E5A33D;
+  --brand-cream: #FCF9F2;
+  --brand-dark: #1E293B;
+  --brand-gray-bg: #F3F4F6;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--brand-gray-bg);
+  color: var(--brand-dark);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Brand Button Styles */
+.btn-brand-primary {
+  background-color: var(--brand-primary);
+  color: #ffffff;
+  transition: all 0.2s ease-in-out;
+}
+.btn-brand-primary:hover {
+  background-color: var(--brand-primary-light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(44, 78, 26, 0.25);
+}
+
+.btn-brand-gold {
+  background-color: var(--brand-gold);
+  color: #ffffff;
+  transition: all 0.2s ease-in-out;
+}
+.btn-brand-gold:hover {
+  background-color: var(--brand-gold-light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(197, 136, 43, 0.3);
+}
+
+/* Category Pill Active State */
+.cat-pill.active {
+  background-color: var(--brand-primary);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(44, 78, 26, 0.3);
+}
+
+/* Menu Item Card Hover */
+.menu-card {
+  transition: all 0.2s ease-in-out;
+}
+.menu-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.08);
+}
+
+/* Toast Animation */
+@keyframes slideDown {
+  from {
+    transform: translate(-50%, -100%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+.animate-toast {
+  animation: slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Ripple effect */
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Table Tent Card Preview */
+.table-tent-card {
+  width: 100%;
+  max-width: 320px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  border: 2px solid var(--brand-gold);
+  overflow: hidden;
+}
+
+/* Thermal Receipt Styling */
+#receipt-container {
+  width: 58mm;
+  margin: 0 auto;
+  padding: 10px;
+  background: #fff;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 11px;
+  line-height: 1.25;
+  color: #000;
+}
+#receipt-container.receipt-80mm {
+  width: 80mm;
+  font-size: 12px;
+}
+.receipt-divider {
+  border-top: 1px dashed #000;
+  margin: 6px 0;
+}
+.receipt-double-divider {
+  border-top: 2px dashed #000;
+  margin: 6px 0;
+}
+
+/* Print Media Query */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  
+  /* When printing Receipt */
+  body.printing-receipt #printable-receipt-area,
+  body.printing-receipt #printable-receipt-area * {
+    visibility: visible;
+  }
+  body.printing-receipt #printable-receipt-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* When printing Table QR Stand */
+  body.printing-qr #printable-qr-area,
+  body.printing-qr #printable-qr-area * {
+    visibility: visible;
+  }
+  body.printing-qr #printable-qr-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+    background: #fff;
+  }
+  body.printing-qr .no-print {
+    display: none !important;
+  }
+}
